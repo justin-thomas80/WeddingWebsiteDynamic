@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ngWeddingApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kevin and Samantha</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+
+    <!-- Bootstrap -->
+    <link href="/assets/tp/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="assets/tp/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="assets/tp/respondJs/dest/respond.min.js"></script>
+    <![endif]-->
+
+
+    <!--font-->
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!--font-family: 'Montserrat', sans-serif;-->
+    <!--css-->
+    <link href='assets/css/wedding.min.css' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body class="wedding-sa-body">
+
+<!--nav bar-->
+
+<div class="container-fluid wedding-sa-banner">
+    <div class="container">
+
+        <div class="wedding-sa-banner-container">
+            <div class="row">
+                <div class="col-sm-6"><img  src="assets/images/logo_inverse.png"></div>
+                <div class="col-sm-6"><span>Kevin and Samantha's Wedding Reception Seat Finder</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--===========================-->
+<!--Seating lookup-->
+<!--===========================-->
+
+<div class="container-fluid" ng-controller="weddingSeatFinderController">
+    <div class="container wedding-sa-lookup-section">
+
+
+        <div class="row">
+            <div class="col-xs-12 wedding-sa-lookup-section-title">
+                Find your table here:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 wedding-sa-lookup-section-desc">
+                (Just enter your name or just your last name to lookup your entire clan)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <input class="form-control" type="search" ng-model="seatingFilter" placeholder="Enter Name..." />
+            </div>
+        </div>
+
+<!--        <div class="row" >
+            <div class="col-xs-2">Table Number</div>
+            <div class="col-xs-10">Guest Name</div>
+        </div>
+        <div class="row" ng-repeat="n in seatingArrangement | filter:seatingFilter as results" >
+                <div class="col-xs-2">{{n.SANumber}}</div>
+                <div class="col-xs-10">{{n.SAName}}</div>
+        </div>
+        <div ng-if="results.length == 0"> Can't find you :-(</div>-->
+
+
+        <table  class="table table-striped">
+            <tr>
+                <th>Table Number</th>
+                <th>Guest Name</th>
+            </tr>
+            <tr ng-repeat="n in seatingArrangement | filter:seatingFilter as results" >
+                <td>{{n.SANumber}}</td>
+                <td>{{n.SAName}}</td>
+            </tr>
+            <tr ng-if="results.length == 0">
+                <td>--</td>
+                <td>
+                    <div class="wedding-sa-lookup-fail-section">
+                        <div>Awwww we can't find you :-( </div>
+                        <div><img class="img-responsive" src="assets/images/awww-xsmall-hq.jpg"></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+</div>
+
+
+
+<!--===========================-->
+<!--footer-->
+<!--===========================-->
+
+<div class="container-fluid">
+
+    <div class="container">
+        <div class="row wedding-footer-container">
+            <div class="col-xs-6 text-left">
+<!--                <audio controls  autoplay="autoplay" loop>
+                    <source src="assets/audio/home.mp3" type="audio/mpeg">
+                    &lt;!&ndash;<source src="assets/audio/SangueDoLaranja.mp3" type="audio/mpeg">&ndash;&gt;
+                    no browser support for audio element
+                </audio>-->
+            </div>
+
+
+            <div class="col-xs-6 text-right">
+                April 11th 2015
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="assets/tp/jquery/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="assets/tp/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="assets/tp/angularjs/angular.min.js"></script>
+<script src="assets/js/wedding.min.js"></script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-57611989-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+body{
+    font-family: 'Pacifico', cursive;
+    background-color: #f7e9db;
+
+    background: -webkit-linear-gradient(#f4decb,#f9eee3,#ffffff,#f7e9db); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#f4decb,#f9eee3,#ffffff,#f7e9db); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#f4decb,#f9eee3,#ffffff,#f7e9db); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#f4decb,#f9eee3,#ffffff,#f7e9db); /* Standard syntax */
+
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+
+/*==========================*/
+/*modal stuff*/
+/*==========================*/
+.wedding-modals{
+    font-family: 'Montserrat', sans-serif;
+}
+.modal .btn-primary:hover{
+    background-color: #f7e9db;
+    border-color: bisque;
+}
+.modal .btn-primary {
+    background-color: #d4b78c;
+    border-color: bisque;
+}
+
+.modal .wedding-dance-moves-container{
+    text-align: center;
+    padding-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.modal .wedding-dance-moves-container img{
+    margin: 10px auto;
+}
+.modal .wedding-dance-moves-container video{
+    margin: 10px auto;
+}
+
+.wedding-toast{
+    display:none;
+    position: absolute;
+    top:7%;
+    background-color: #713636;
+    color: white;
+    left: 0;
+    text-align: center;
+    right: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+}
+
+
+.wedding-poll-img-container {
+    max-width: 65%;
+    margin: 0 auto  ;
+}
+.wedding-poll-question-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.wedding-poll-answer-container input{
+    margin-left: 8px;
+    margin-right: 20px;
+}
+
+.wedding-poll-results-title{
+    font-weight: bold;
+}
+.wedding-poll-results-question{
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.animate-hide {
+    -webkit-transition: all linear 0.5s;
+    transition: all linear 0.5s;
+    line-height: 20px;
+    opacity: 1;
+}
+
+.animate-hide.ng-hide {
+    line-height: 0;
+    opacity: 0;
+    padding: 0 10px;
+}
+
+
+.wedding-poll-results-container .ct-chart .ct-label, .ct-chart .ct-label.ct-horizontal{
+    /*fill:rgba(255, 255, 255, 1);*/
+    fill: rgb(255, 255, 255);
+    /*font-size: 1.7rem;*/
+
+}
+@media (min-width: 268px) {
+    .wedding-poll-results-container .ct-chart .ct-label, .ct-chart .ct-label.ct-horizontal{
+        /*fill:rgba(255, 255, 255, 1);*/
+        fill: rgb(0, 0, 0);
+        font-size: 1.0rem;
+
+    }
+}
+
+@media (min-width: 1024px) {
+    .wedding-poll-results-container .ct-chart .ct-label, .ct-chart .ct-label.ct-horizontal{
+        /*fill:rgba(255, 255, 255, 1);*/
+        fill: rgb(0, 0, 0);
+        font-size: 1.7rem;
+
+    }
+}
+
+/*==========================*/
+/*title content*/
+/*==========================*/
+
+.wedding-title-container{
+    margin-top: 50px;
+}
+
+.wedding-content-container{
+
+}
+
+
+#wedding-logo{
+    max-width: 50px;
+}
+#wedding-our-story{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.wedding-picture{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+/*==========================*/
+/*Carousel stuff*/
+/*==========================*/
+
+#greeting-carousel{
+    /*width: 55%;*/
+    margin: 0 auto;
+    box-shadow: 10px 10px 10px #888888;
+}
+#greeting-carousel .carousel-inner .item .greeting-carousel-img{
+    /*height: 600px;*/
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container-fluid.wedding-content-container{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#greeting-carousel .carousel-indicators{
+    right: 0%;
+    background-color: #713636;
+    opacity: 0.65;
+    width: 100%;
+    left: inherit;
+}
+
+/*==========================*/
+/*Ceremony and reception info*/
+/*==========================*/
+.wedding-info-container{
+    margin-top: 50px;
+}
+.wedding-info-text{
+    margin-top: 15px;
+}
+.wedding-address-container{
+    font-size: 12px;
+}
+.wedding-info-container img{
+    box-shadow: 10px 10px 10px #888888;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wedding-info-container h3{
+    font-size: 15px;
+}
+.wedding-info-container p,.wedding-address-container{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.wedding-info-container .wedding-address-url{
+    color: #000000;
+}
+/*==========================*/
+/*Accommodation info*/
+/*==========================*/
+.wedding-accommodation-container{
+    margin-top: 50px;
+}
+
+/*==========================*/
+/*contact info*/
+/*==========================*/
+.wedding-contact-container{
+    margin-top: 50px;
+}
+
+.wedding-contact-container .wedding-info-text{
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*==========================*/
+/*footer*/
+/*==========================*/
+
+.wedding-footer-container{
+    margin-top:25px;
+}
+
+
+
+/*==========================*/
+/*Wedding seating arrangement*/
+/*==========================*/
+
+.wedding-sa-body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.wedding-sa-banner{
+    padding: 15px;
+    /*height: 75px;*/
+    color: white;
+    background-color: #000000;
+    font-family: 'Pacifico', cursive;
+    font-size: 26px;
+}
+.wedding-sa-banner img{
+    max-height: 75px;
+    padding-right: 25px;
+}
+.wedding-sa-banner-container{
+    text-align: center;
+}
+
+.wedding-sa-lookup-section{
+    padding-top: 45px;
+    padding-bottom: 45px;
+}
+
+
+.wedding-sa-lookup-section input{
+    margin-bottom: 10px;
+}
+
+.wedding-sa-lookup-section-title{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.wedding-sa-lookup-section-desc{
+    margin-bottom: 10px;
+}
+
+.wedding-sa-lookup-fail-section{
+    font-size: 22px;
+}
+.wedding-sa-lookup-fail-section img{
+    box-shadow: 10px 10px 10px #888;
+    padding-top: 10px;
+}
+.wedding-sa-lookup-section-button{
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 10px;
+}
+.wedding-sa-lookup-section-button button,
+.wedding-sa-lookup-section-button button:active,
+.wedding-sa-lookup-section-button button:focus{
+    background-color: #6D7088;
+    color: #ffffff;
+}
+.wedding-sa-lookup-section-button button:hover{
+    background-color: #525569;
+    color: #ffffff;
+}

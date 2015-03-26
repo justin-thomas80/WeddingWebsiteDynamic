@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ngWeddingApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kevin and Samantha</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+
+    <!-- Bootstrap -->
+    <link href="/assets/tp/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="assets/tp/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="assets/tp/respondJs/dest/respond.min.js"></script>
+    <![endif]-->
+
+
+    <!--font-->
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <!--font-family: 'Montserrat', sans-serif;-->
+    <!--css-->
+    <link href='assets/css/wedding.min.css' rel='stylesheet' type='text/css'>
+    <link href='assets/tp/chartist/dist/chartist.min.css' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript">
+        var pageMgr ;
+        window.onload= function(){
+            pageMgr =wedding.createPageMgr();
+        };
+    </script>
+</head>
+<body >
+
+<!--nav bar-->
+
+<div class="container-fluid wedding-nav-bar">
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button id="wedding-menu-button" type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#scroll-home"><img id="wedding-logo" class="img-responsive" src="assets/images/logo_inverse.png"></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="navBarController">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="#scroll-home">Home</a></li>
+                        <li><a href="#scroll-ceremony">Ceremony</a></li>
+                        <li><a href="#scroll-reception">Reception</a></li>
+                        <li><a href="#scroll-accommodation">Accommodation</a></li>
+                        <li><a href="#scroll-reception">Contact</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" ng-click="showPoll()">Fun Polls</a></li>
+                                <li><a href="#" ng-click="showMusicRequest()">Reception Music Requests</a></li>
+                                <li><a href="#" ng-click="showDanceMoves()">Dance techniques for the reception</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" ng-click="showDateRequest()">Requests to Date Justin</a></li>
+                                <!--<li class="divider"></li>-->
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <!--end nav bar-->
+    </div>
+</div>
+
+<!--========================================-->
+<!--modals-->
+<!--========================================-->
+
+<div class="wedding-modals" ng-controller="weddingModalController">
+    <div class="wedding-toast">{{weddingToast}}</div>
+
+
+    <div class="modal fade" id="wedding-request-date-justin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="exampleModalLabel">Send Date Request to Justin</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="from-name" class="control-label">Your Name:</label>
+                            <input type="text" class="form-control" id="from-name" ng-model="dateRequestData.requesterName">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Message:</label>
+                            <textarea class="form-control" id="message-text" ng-model="dateRequestData.requesterMsg"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="sendDateRequest()">Send Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="wedding-request-music" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="mustRequestLabel">Make a music request for the reception</h4>
+                </div>
+                <div class="modal-body">
+
+                    <p>You can make a music request from the wedding DJ's music collection by following this link:</p>
+                    <p><a target="_blank" href="http://www.thunderdj.djintelligence.com/request/sthomas">DJ Thunders music</a></p>
+                    <p>If the DJ doesn't have the song you want, send us a message using the form below and we'll try and get that song added!</p>
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="from-name" class="control-label">Artist Name</label>
+                            <input type="text" class="form-control" id="music-artist-name" ng-model="musicRequestData.artistName">
+                        </div>
+                        <div class="form-group">
+                            <label for="from-name" class="control-label">Song Name</label>
+                            <input type="text" class="form-control" id="music-song-name" ng-model="musicRequestData.songName">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="sendMusicRequest()">Send Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="wedding-dance-moves" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="danceMovesLabel">Tips for Dance moves to use at the reception</h4>
+                </div>
+                <div class="modal-body">
+
+                   <div class="wedding-dance-moves-container" id="wedding-dance-moves-container-1">
+                      <!-- <img  class="img-responsive wedding-dance-img-1" src="assets/images/amazing-dance-moves.gif">-->
+                        <p>**not the guy in the center but the man to the right (whose wife is quite embarrassed)</p>
+                   </div>
+
+
+                    <div class="wedding-dance-moves-container" id="wedding-dance-moves-container-2">
+<!--                        <video  controls>
+                            <source src="assets/video/dance2.mp4" type="video/mp4">
+                        </video>-->
+                        <p>**Please do these moves!!!</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="wedding-poll" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="pollLabel">Take a fun poll</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="wedding-poll-container animate-hide" ng-show="showPollFields.showPollQuestionsContainer">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="wedding-poll-img-container"><img class="img-responsive" src="{{pollQuestion.imgSrc}}"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="wedding-poll-question-container">{{pollQuestion.Q}}</div>
+                                <div class="wedding-poll-answer-container " ng-show="showPollFields.A1">
+                                    <input type="radio" name="pollAnswers" value="A1" ng-model="pollChosenAnswer" ng-click="sendPollAnswer()">{{pollQuestion.A1}}
+                                </div>
+                                <div class="wedding-poll-answer-container" ng-show="showPollFields.A2">
+                                    <input type="radio" name="pollAnswers" value="A2" ng-model="pollChosenAnswer" ng-click="sendPollAnswer()">{{pollQuestion.A2}}
+                                </div>
+                                <div class="wedding-poll-answer-container" ng-show="showPollFields.A3">
+                                    <input type="radio" name="pollAnswers" value="A3" ng-model="pollChosenAnswer" ng-click="sendPollAnswer()">{{pollQuestion.A3}}
+                                </div>
+                                <div class="wedding-poll-answer-container" ng-show="showPollFields.A4">
+                                    <input type="radio" name="pollAnswers" value="A4" ng-model="pollChosenAnswer" ng-click="sendPollAnswer()">{{pollQuestion.A4}}
+                                </div>
+                                <div class="wedding-poll-answer-container" ng-show="showPollFields.A5">
+                                    <input type="radio" name="pollAnswers" value="A5" ng-model="pollChosenAnswer" ng-click="sendPollAnswer()">{{pollQuestion.A5}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wedding-poll-results-container animate-hide" ng-hide="showPollFields.showPollQuestionsContainer">
+                        <div class="wedding-poll-results-title">Poll Results of:</div>
+                        <div class="wedding-poll-results-question">{{pollQuestion.Q}}</div>
+                        <div class="ct-chart ct-major-tenth"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-show="showPollFields.showNextPollQuestionButton" ng-click="nextPollQuestion()">Next Poll</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!--========================================-->
+<!--========================================-->
+
+<!--title-->
+<div id="scroll-home" class="container wedding-title-container">
+    <div id="wedding-our-story" class="row">
+        <div class="col-xs-12">
+            <h1>Kevin and Samantha's Wedding Website</h1>
+            <div class="wedding-sa-lookup-section-button">
+                <a href="./findmyseat"><button class="btn btn-default btn-lg">Click Here to Find Your Seat</button> </a>
+            </div>
+            <!--<p>.....Under construction.....</p>-->
+        </div>
+    </div>
+
+</div>
+
+<!--carousel-->
+<div class="container-fluid wedding-content-container">
+    <div class="container">
+
+
+        <div id="greeting-carousel" class="carousel slide" data-ride="carousel" data-interval="7000">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <!--               <li data-target="#greeting-carousel" data-slide-to="0" class="active"></li>
+                               <li data-target="#greeting-carousel" data-slide-to="1"></li>-->
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <!--   <div class="item active">
+                                 <img class="greeting-carousel-img" src="assets/images/wedding-carousel-2.jpg" alt="greeting 4">
+                             </div>
+                          <div class="item ">
+                                 <img class="greeting-carousel-img" src="assets/images/wedding-carousel-1.jpg" alt="greeting 1">
+                             </div>-->
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#greeting-carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#greeting-carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<!--===========================-->
+<!--Reception and Ceremony info-->
+<!--===========================-->
+<div id="scroll-ceremony" class="container-fluid ">
+    <div class="container">
+
+        <!--church info-->
+        <div class="row wedding-info-container">
+            <div class="col-sm-6">
+                <img class="img-responsive" src="assets/images/wedding-church-outside.jpg">
+            </div>
+            <div class="col-sm-6">
+                <div class="row"><div class="col-xs-12"><h2>Ceremony</h2></div></div>
+                <div class="row"><div class="col-xs-12">
+                    <p class="wedding-info-text">The Ceremony will be held at 1:30pm on April 11th
+                        2015 at St. Peter's Evangelical Lutheran Church </p>
+                </div></div>
+                <div class="row"><div class="col-xs-12"><h3>St. Peter's Lutheran Church</h3></div></div>
+                <div class="wedding-address-container">
+                    <div class="row"><div class="col-xs-12">810 King Street East</div></div>
+                    <div class="row"><div class="col-xs-12">Cambridge, ON </div></div>
+                    <div class="row"><div class="col-xs-12">N3H 3P2</div></div>
+                    <div class="row"><div class="col-xs-12"><a class="wedding-address-url" target="_blank" href="http://stpeterscambridge.com">stpeterscambridge.com</a></div></div>
+                    <div class="row"><div class="col-xs-12"><a target="_blank" href="https://www.google.ca/maps/place/810+King+St+E,+Cambridge,+ON+N3H+3P2">map it</a> </div></div>
+                </div>
+            </div>
+        </div>
+
+        <!--reception info-->
+        <div id="scroll-reception" class="row wedding-info-container">
+            <div class="col-sm-6 col-sm-push-6">
+                <img class="img-responsive" src="assets/images/wedding-reception-outside.jpg">
+            </div>
+            <div class="col-sm-6 col-sm-pull-6">
+                <div class="row"><div class="col-xs-12"><h2>Reception</h2></div></div>
+                <div class="row"><div class="col-xs-12">
+                    <p class="wedding-info-text">The cocktails and reception will be held at
+                        WhistleBear Golf Club following the ceremony  </p>
+                </div></div>
+                <div class="row"><div class="col-xs-12"><h3>Whistle Bear Golf Club</h3></div></div>
+                <div class="wedding-address-container">
+                    <div class="row"><div class="col-xs-12">R.R. #33 – 1316 Dickie Settlement Road</div></div>
+                    <div class="row"><div class="col-xs-12">Cambridge, ON </div></div>
+                    <div class="row"><div class="col-xs-12">N3H 4R8</div></div>
+                    <div class="row"><div class="col-xs-12"><a class="wedding-address-url" target="_blank" href="http://whistlebear.ca/">whistlebear.ca</a></div></div>
+                    <div class="row"><div class="col-xs-12"><a target="_blank" href="https://www.google.ca/maps/place/1316+Dickie+Settlement+Rd,+Cambridge,+ON+N3H+4R8">map it</a> </div></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!--===========================-->
+<!--Accommodation info-->
+<!--===========================-->
+<div id="scroll-accommodation" class="container-fluid wedding-accommodation-container">
+
+    <div class="row wedding-info-container">
+        <div class="col-sm-6">
+            <img class="img-responsive" src="assets/images/wedding-hotel.jpg">
+        </div>
+        <div class="col-sm-6">
+            <div class="row"><div class="col-xs-12"><h2>Accommodations</h2></div></div>
+            <div class="row"><div class="col-xs-12">
+                <p class="wedding-info-text">A block of rooms has been reserved at the Radisson in Kitchener under "Thomas/Bast Wedding" </p>
+                <p class="wedding-info-text">Book fast as rooms are going quick! </p>
+            </div></div>
+            <div class="row"><div class="col-xs-12"><h3>Radisson Hotel Kitchener Waterloo</h3></div></div>
+            <div class="wedding-address-container">
+                <div class="row"><div class="col-xs-12">2960 King St East</div></div>
+                <div class="row"><div class="col-xs-12">Kitchener, ON </div></div>
+                <div class="row"><div class="col-xs-12">N2A 1A9</div></div>
+                <div class="row"><div class="col-xs-12"><a class="wedding-address-url" target="_blank" href="http://www.radisson.com/kitchener-hotel-on-n2a1a9/onkitche">www.radisson.com/kitchener-hotel-on-n2a1a9/onkitche</a></div></div>
+                <div class="row"><div class="col-xs-12"><a target="_blank" href="https://www.google.ca/maps/place/2960+King+St+E,+Kitchener,+ON+N2A">map it</a> </div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--===========================-->
+<!--Contact info-->
+<!--===========================-->
+<div id="scroll-contact" class="container-fluid wedding-contact-container">
+    <div class="container">
+        <div class="row"><div class="col-xs-12"><h2>Contact</h2></div></div>
+        <div class="row"><div class="col-xs-12">
+            <p class="wedding-info-text">For any questions, allergies/dietary concerns, etc contact us at:
+                <a target="_blank" href="mailto:info@kevinandsamantha.ca">
+                    info@kevinandsamantha.ca
+                </a>
+            </p>
+        </div></div>
+    </div>
+</div>
+
+<!--===========================-->
+<!--footer-->
+<!--===========================-->
+
+<div class="container-fluid">
+
+    <div class="container">
+        <div class="row wedding-footer-container">
+            <div class="col-xs-6 text-left">
+<!--                <audio controls  autoplay="autoplay" loop>
+                    <source src="assets/audio/home.mp3" type="audio/mpeg">
+                    &lt;!&ndash;<source src="assets/audio/SangueDoLaranja.mp3" type="audio/mpeg">&ndash;&gt;
+                    no browser support for audio element
+                </audio>-->
+            </div>
+
+
+            <div class="col-xs-6 text-right">
+                April 11th 2015
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="assets/tp/jquery/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="assets/tp/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="assets/tp/angularjs/angular.min.js"></script>
+<script src="assets/tp/chartist/dist/chartist.min.js"></script>
+<script src="assets/js/wedding.min.js"></script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-57611989-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        wedding.initializeCarousel();
+    });
+
+
+</script>
+</body>
+</html>
